@@ -46,10 +46,12 @@ app.get("/transactions", async (req, res) => {
   try {
     const transactions = await Transaction.find().sort({ date: 1 });
     let balance = 0;
-    const latestTransactions = transactions.map((x) => {
+    const calculatedTransactions = transactions.map((x) => {
       balance += x.credit - x.debit;
       return { ...x.toObject(), balance };
     });
+    const latestTransactions = calculatedTransactions.reverse();
+
     res.json(latestTransactions);
   } catch (err) {
     res.status(500).json({ error: err.message });
