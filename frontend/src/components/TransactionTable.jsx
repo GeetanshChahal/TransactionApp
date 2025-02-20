@@ -4,6 +4,7 @@ import moment from "moment";
 
 const TransactionTable = () => {
   const [transactions, setTransactions] = useState([]);
+  // const [transactionType, setTransactionType] = useState("credit");
   const [newTransaction, setNewTransaction] = useState({
     date: "",
     description: "",
@@ -74,27 +75,40 @@ const TransactionTable = () => {
       </table>
       <div>
         <h3>Add Transaction</h3>
+        <label htmlFor="date">Date:</label>
         <input
           type="date"
           name="date"
           value={newTransaction.date}
           onChange={handleChange}
         />
+        <label htmlFor="description">Description:</label>
         <input
           type="text"
           name="description"
           value={newTransaction.description}
           onChange={handleChange}
         />
+        {/* <select
+          value={transactionType}
+          onChange={(e) => setTransactionType(e.target.value)}
+        >
+          <option value={"credit"}>Credit</option>
+          <option value={"debit"}>Debit</option>
+        </select> */}
+        <label htmlFor="credit">Credit:</label>
         <input
           type="number"
           name="credit"
+          placeholder="credit"
           value={newTransaction.credit}
           onChange={handleChange}
         />
+        <label htmlFor="debit">Debit:</label>
         <input
           type="number"
           name="debit"
+          placeholder="debit"
           value={newTransaction.debit}
           onChange={handleChange}
         />
